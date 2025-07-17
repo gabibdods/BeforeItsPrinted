@@ -1,0 +1,25 @@
+name: beforeitsprinted
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout repo
+        uses: action/checkout@v3
+    
+      - name: Set Up Terraform
+        uses: hashicorp/setup-terraform@v2
+    
+      - name: Terraform Init
+        run: terraform -chdir=infra init
+    
+      - name: Terraform Apply
+        run: terraform -chdir=infra apply -auto-approve
+        env:
+          TF_SSH_USER: ${{ secrets.SSH_USER }}
+          TF_SSH_HOST: ${{ secrets.SSH_HOST }}
