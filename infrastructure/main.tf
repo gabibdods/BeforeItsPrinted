@@ -1,6 +1,3 @@
-variable "ssh_user" {}
-variable "ssh_host" {}
-
 resource "null_resource" "deploy_compose" {
 	provisioner "local_exec" {
 		command = <<EOT
