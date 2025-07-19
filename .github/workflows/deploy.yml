@@ -19,7 +19,7 @@ jobs:
         run: terraform -chdir=infrastructure init
     
       - name: Terraform Apply
-        run: terraform -chdir=infra apply -auto-approve
+        run: terraform -chdir=infrastructure apply -auto-approve
         env:
           TF_SSH_USER: ${{ secrets.SSH_USER }}
           TF_SSH_HOST: ${{ secrets.SSH_HOST }}
