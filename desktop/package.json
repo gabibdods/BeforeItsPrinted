@@ -1,0 +1,17 @@
+{
+  "name": "desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && electron ."
+  },
+  "devDependencies": {
+    "@types/electron": "^1.4.38",
+    "@types/node": "^24.0.14",
+    "electron": "^37.2.3",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}

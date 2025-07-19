@@ -1,20 +1,19 @@
 from pydantic import BaseModel, ConfigDict
-from typing import List, Optional
 
 class Question(BaseModel):
     question_text: str
-    options: Optional[List[str]] = None
-    answer: Optional[str] = None
-    difficulty: Optional = None
-    topic: Optional[str] = None
+    options: list[str] | None = None
+    answer: str | None = None
+    difficulty: str | None = None
+    topic: str | None = None
     type: str
 
-    model_config = ConfigDict(arbitrary_types_allowed = True)
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 class ExamSection(BaseModel):
     type: str
-    questions: List[Question]
+    questions: list[Question]
 
 class ParsedExam(BaseModel):
     title: str
-    sections: List[ExamSection]
+    sections: list[ExamSection]

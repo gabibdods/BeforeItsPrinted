@@ -10,6 +10,14 @@
 !fastapi/*.py
 !fastapi/*.pdf
 
+!desktop/
+!desktop/src/
+!desktop/src/*
+!desktop/src/index.ts
+!desktop/package-lock.json
+!desktop/package.json
+!desktop/tsconfig.json
+
 !infrastructure/
 !infrastructure/docker-compose.yaml
 !infrastructure/*.tf
