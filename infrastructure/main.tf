@@ -1,5 +1,8 @@
+terraform {
+	backend "local" {}
+}
 resource "null_resource" "deploy_compose" {
-	provisioner "local_exec" {
+	provisioner "local-exec" {
 		command = <<EOT
 ssh ${var.ssh_user}@{var.ssh_host} <<'REMOTE'
 	cd ${var.app_dir} &&
