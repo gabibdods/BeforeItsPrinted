@@ -21,5 +21,9 @@ jobs:
       - name: Terraform Apply
         run: terraform -chdir=infrastructure apply -auto-approve
         env:
-          TF_SSH_USER: ${{ secrets.SSH_USER }}
-          TF_SSH_HOST: ${{ secrets.SSH_HOST }}
+          TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
+          TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
+          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
+
+      - name: Terraform Validate
+        run: terraform -chdir=infrastructure validate

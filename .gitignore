@@ -21,6 +21,7 @@
 !infrastructure/
 !infrastructure/docker-compose.yaml
 !infrastructure/*.tf
+!infrastructure/*.lock.hcl
 
 !.github/
 !.github/workflows/

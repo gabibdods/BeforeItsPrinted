@@ -4,3 +4,6 @@ variable "ssh_user" {
 variable "ssh_host" {
 	type = string
 }
+variable "app_dir" {
+	type = string
+}

@@ -1,30 +1,21 @@
 services:
-  django:
-    build: ../backend
-    ports:
-      - "8000:8000"
-    env_file:
-      - ../backend/.env
-    volumes:
-      - ../backend:/app
-    depends_on:
-      - db
+    fastapi:
+        build: ../fastapi
+        ports:
+            - "8081:8081"
+        volumes:
+            - ../fastapi:/app
+        depends_on:
+          - db
       
-  fastapi:
-    build: ../fastapi_parser
-    ports:
-      - "8081:8081"
-    volumes:
-      - ../fastapi_parser:/app
-      
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: <redacted>
-      POSTGRES_PASSWORD: <redacted>
-      POSTGRES_DB: bip
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    db:
+        image: postgres:15
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_DB: bip
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
       
 volumes:
-  postgres_data
+    postgres_data:
