@@ -18,7 +18,7 @@ services:
       - ../fastapi_parser:/app
       
   db:
-    images: postgres:15
+    image: postgres:15
     environment:
       POSTGRES_USER: <redacted>
       POSTGRES_PASSWORD: <redacted>
