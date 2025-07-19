@@ -10,7 +10,7 @@ jobs:
   
     steps:
       - name: Checkout repo
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
     
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
