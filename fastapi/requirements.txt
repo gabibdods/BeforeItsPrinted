@@ -1,0 +1,10 @@
+pdfplumber
+fastapi
+python-docx
+pytesseract
+pillow
+pydantic
+typing_extensions
+pydantic_core
+uvicorn
+python-multipart

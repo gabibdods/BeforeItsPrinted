@@ -9,6 +9,8 @@
 !fastapi/
 !fastapi/*.py
 !fastapi/*.pdf
+!fastapi/Dockerfile
+!fastapi/requirements.txt
 
 !desktop/
 !desktop/src/
