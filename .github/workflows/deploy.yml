@@ -17,8 +17,8 @@ jobs:
       - name: Check SSH Availability
         run: ssh -V
 
-      - name: Destroy Previous Terraform Provisioner
-        uses: terraform destroy -target=null_resource.deploy_compose
+      - name: Taint Previous Terraform Provisioner
+        uses: terraform taint null_resource.deploy_compose
 
       - name: Terraform Init
         run: terraform init
