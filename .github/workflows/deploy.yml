@@ -17,6 +17,8 @@ jobs:
       - name: Terraform Init
         run: terraform init
         env:
+          TF_VAR_postgres_user: ${{ secrets.POSTGRES_PASSWORD }}
+          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_USER }}
           TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
           TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
           TF_VAR_app_dir: ${{ secrets.APP_DIR }}
@@ -26,6 +28,8 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
         env:
+          TF_VAR_postgres_user: ${{ secrets.POSTGRES_PASSWORD }}
+          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_USER }}
           TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
           TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
           TF_VAR_app_dir: ${{ secrets.APP_DIR }}

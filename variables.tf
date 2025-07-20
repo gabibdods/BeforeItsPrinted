@@ -1,3 +1,9 @@
+variable "postgres_user" {
+	type = string
+}
+variable "postgres_pass" {
+	type = string
+}
 variable "ssh_user" {
 	type = string
 }
