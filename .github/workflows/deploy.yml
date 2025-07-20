@@ -3,14 +3,15 @@ name: beforeitsprinted
 on:
   push:
     branches: [main]
+
 jobs:
   deploy:
     runs-on: [self-hosted, Windows]
-  
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-    
+
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
@@ -18,7 +19,7 @@ jobs:
         run: ssh -V
 
       - name: Taint Previous Terraform Provisioner
-        uses: terraform taint null_resource.deploy_compose
+        run: terraform taint null_resource.deploy_compose
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
           TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
@@ -52,11 +53,3 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-        env:
-          TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
-          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
-          TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
-          TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
-          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
-          TF_VAR_port: ${{ secrets.PORT }}
-          TF_VAR_trop: ${{ secrets.TROP }}
