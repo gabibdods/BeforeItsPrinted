@@ -7,3 +7,9 @@ variable "ssh_host" {
 variable "app_dir" {
 	type = string
 }
+variable "port" {
+	type = string
+}
+variable "trop" {
+	type = string
+}

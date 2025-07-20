@@ -2,6 +2,8 @@
 
 !.gitignore
 !README.md
+!*.tf
+!*.lock.hcl
 
 !backend/
 !backend/*

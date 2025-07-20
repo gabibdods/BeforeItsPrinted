@@ -1,8 +1,12 @@
 services:
     fastapi:
-        build: ./fastapi
+        build:
+          context: ./fastapi
+          dockerfile: Dockerfile
+          args:
+            PORT: ${PORT}
         ports:
-            - "${PORT}:8081"
+            - "${PORT}:${TROP}"
         volumes:
             - ./fastapi:/app
         depends_on:

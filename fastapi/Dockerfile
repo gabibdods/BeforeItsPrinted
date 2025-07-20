@@ -1,3 +1,5 @@
+ARG PORT
+
 FROM python:3.11-slim
 WORKDIR /app
 
@@ -6,6 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 8081
+ENV PORT=${PORT}
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8081", "--reload"]
+EXPOSE ${PORT}
+
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT} --reload"]
