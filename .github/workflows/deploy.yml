@@ -15,6 +15,9 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
+      - name: pwd
+        run: Get-Location
+
       - name: Check SSH Availability
         run: ssh -V
 
@@ -44,8 +47,9 @@ jobs:
         run: terraform output
 
       - name: Terraform Apply
+        shell: pwsh
         run: |
-          export TF_LOG=DEBUG
+          $env:TF_LOG = "DEBUG"
           terraform apply -auto-approve
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
