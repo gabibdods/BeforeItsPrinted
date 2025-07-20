@@ -15,11 +15,14 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
+      - name: Terraform Enter
+        run: cd infrastructure
+
+      - name: Terraform Init
+        run: terraform init
+
       - name: Terraform Apply
-        run: |
-          cd infrastructure
-          terraform init
-          terraform apply -auto-approve
+        run: terraform apply -auto-approve
         env:
           TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
           TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
