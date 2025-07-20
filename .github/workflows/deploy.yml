@@ -40,8 +40,13 @@ jobs:
           TF_VAR_port: ${{ secrets.PORT }}
           TF_VAR_trop: ${{ secrets.TROP }}
 
+      - name: Terraform Output
+        run: terraform output
+
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: |
+          export TF_LOG=DEBUG
+          terraform apply -auto-approve
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
           TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
