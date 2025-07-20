@@ -3,7 +3,6 @@ name: beforeitsprinted
 on:
   push:
     branches: [main]
-
 jobs:
   deploy:
     runs-on: [self-hosted, Windows]
