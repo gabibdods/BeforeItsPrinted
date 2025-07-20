@@ -1,6 +1,6 @@
 from PIL import Image
 import pytesseract
-from .models import ParsedExam, ExamSection, Question
+from models import ParsedExam, ExamSection, Question
 
 def parse_image(path: str) -> ParsedExam:
     text = pytesseract.image_to_string(Image.open(path))

@@ -1,9 +1,9 @@
 # fastapi, uvicorn, pdfplumber, python-docx, pytesseract, pillow, python-multipart
 from fastapi import FastAPI, UploadFile, File
-from .pdf import parse_pdf
-from .image import parse_image
-from .word import parse_docx
-from .txt import parse_txt
+from pdf import parse_pdf
+from image import parse_image
+from word import parse_docx
+from txt import parse_txt
 import os, shutil
 import tempfile
 

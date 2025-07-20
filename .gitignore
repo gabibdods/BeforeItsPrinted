@@ -21,7 +21,7 @@
 !desktop/tsconfig.json
 
 !infrastructure/
-!infrastructure/docker-compose.yaml
+!docker-compose.yaml
 !infrastructure/*.tf
 !infrastructure/*.lock.hcl
 

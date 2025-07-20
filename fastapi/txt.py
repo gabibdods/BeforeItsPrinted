@@ -1,4 +1,4 @@
-from .models import ParsedExam, ExamSection, Question
+from models import ParsedExam, ExamSection, Question
 
 def parse_txt(path: str) -> ParsedExam:
     with open(path, 'r', encoding='utf-8') as f:

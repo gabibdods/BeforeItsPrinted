@@ -1,5 +1,5 @@
 import pdfplumber
-from .models import ParsedExam, ExamSection, Question
+from models import ParsedExam, ExamSection, Question
 
 def parse_pdf(path: str) -> ParsedExam:
     questions = []
