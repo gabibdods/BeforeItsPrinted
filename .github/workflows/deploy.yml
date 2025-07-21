@@ -28,32 +28,6 @@ jobs:
           TF_LOG_PATH: terraform.log
         run: terraform init
 
-      - name: Taint Previous Terraform Provisioner
-        env:
-          TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
-          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
-          TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
-          TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
-          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
-          TF_VAR_port: ${{ secrets.PORT }}
-          TF_VAR_trop: ${{ secrets.TROP }}
-          TF_LOG: DEBUG
-          TF_LOG_PATH: terraform.log
-        run: terraform taint null_resource.deploy_compose
-
-      - name: Terraform Output
-        env:
-          TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
-          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
-          TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
-          TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
-          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
-          TF_VAR_port: ${{ secrets.PORT }}
-          TF_VAR_trop: ${{ secrets.TROP }}
-          TF_LOG: DEBUG
-          TF_LOG_PATH: terraform.log
-        run: terraform output
-
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
@@ -73,6 +47,19 @@ jobs:
           TF_LOG: DEBUG
           TF_LOG_PATH: terraform.log
         run: terraform apply -auto-approve
+
+      - name: Terraform Output
+        env:
+          TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
+          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
+          TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
+          TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
+          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
+          TF_VAR_port: ${{ secrets.PORT }}
+          TF_VAR_trop: ${{ secrets.TROP }}
+          TF_LOG: DEBUG
+          TF_LOG_PATH: terraform.log
+        run: terraform output
 
       - name: Failsafe - show terraform.log
         if: failure()
