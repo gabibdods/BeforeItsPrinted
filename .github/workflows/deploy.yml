@@ -15,19 +15,6 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
-      - name: Taint Previous Terraform Provisioner
-        env:
-          TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
-          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
-          TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
-          TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
-          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
-          TF_VAR_port: ${{ secrets.PORT }}
-          TF_VAR_trop: ${{ secrets.TROP }}
-          TF_LOG: DEBUG
-          TF_LOG_PATH: terraform.log
-        run: terraform taint null_resource.deploy_compose
-
       - name: Terraform Init
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
@@ -40,6 +27,19 @@ jobs:
           TF_LOG: DEBUG
           TF_LOG_PATH: terraform.log
         run: terraform init
+
+      - name: Taint Previous Terraform Provisioner
+        env:
+          TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
+          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
+          TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
+          TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
+          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
+          TF_VAR_port: ${{ secrets.PORT }}
+          TF_VAR_trop: ${{ secrets.TROP }}
+          TF_LOG: DEBUG
+          TF_LOG_PATH: terraform.log
+        run: terraform taint null_resource.deploy_compose
 
       - name: Terraform Output
         env:
