@@ -49,6 +49,7 @@ jobs:
         run: terraform apply -auto-approve
 
       - name: Terraform Output
+        if: failure()
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
           TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
@@ -66,6 +67,7 @@ jobs:
         run: cat terraform.log
 
       - name: Print Terraform Log
+        if: failure()
         run: cat terraform.log
 
       - name: Terraform Validate
