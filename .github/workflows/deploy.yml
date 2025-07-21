@@ -15,9 +15,6 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
-      - name: Check SSH Availability
-        run: Get-ChildItem
-
       - name: Taint Previous Terraform Provisioner
         run: terraform taint null_resource.deploy_compose
         env:

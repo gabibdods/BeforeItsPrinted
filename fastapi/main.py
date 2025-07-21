@@ -1,4 +1,3 @@
-# fastapi, uvicorn, pdfplumber, python-docx, pytesseract, pillow, python-multipart
 from fastapi import FastAPI, UploadFile, File
 from pdf import parse_pdf
 from image import parse_image
@@ -17,7 +16,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 @app.post("/parse/")
 async def parse_uploaded_file(file: UploadFile = File(...)):
     ext = os.path.splitext(file.filename)[1].lower()
@@ -41,3 +39,4 @@ async def parse_uploaded_file(file: UploadFile = File(...)):
 
     os.remove(temp_path)
     return result
+# fastapi, uvicorn, pdfplumber, python-docx, pytesseract, pillow, python-multipart

@@ -1,13 +1,7 @@
-import docx
-from models import ParsedExam, ExamSection, Question
+from docx import Document
+from core import parse_questions
 
-def parse_docx(path: str) -> ParsedExam:
-    doc = docx.Document(path)
-    questions = [
-        Question(question_text = para.text.strip(), type = "short_answer")
-        for para in doc.paragraphs if '?' in para.text
-    ]
-    return ParsedExam(
-        title = "Short Answers Word Exam",
-        sections = [ExamSection(type = "short_answer", questions = questions)]
-    )
+def parse_docx(path: str):
+    doc = Document(path)
+    text = "\n".join(p.text for p in doc.paragraphs if p.text.strip())
+    return parse_questions(text)
