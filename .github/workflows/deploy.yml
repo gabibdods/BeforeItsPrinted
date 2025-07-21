@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
@@ -16,7 +16,6 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Taint Previous Terraform Provisioner
-        run: terraform taint null_resource.deploy_compose
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
           TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
@@ -25,9 +24,11 @@ jobs:
           TF_VAR_app_dir: ${{ secrets.APP_DIR }}
           TF_VAR_port: ${{ secrets.PORT }}
           TF_VAR_trop: ${{ secrets.TROP }}
+          TF_LOG: DEBUG
+          TF_LOG_PATH: terraform.log
+        run: terraform taint null_resource.deploy_compose
 
       - name: Terraform Init
-        run: terraform init
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
           TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
@@ -36,12 +37,11 @@ jobs:
           TF_VAR_app_dir: ${{ secrets.APP_DIR }}
           TF_VAR_port: ${{ secrets.PORT }}
           TF_VAR_trop: ${{ secrets.TROP }}
+          TF_LOG: DEBUG
+          TF_LOG_PATH: terraform.log
+        run: terraform init
 
       - name: Terraform Output
-        run: terraform output
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
           TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
@@ -50,6 +50,36 @@ jobs:
           TF_VAR_app_dir: ${{ secrets.APP_DIR }}
           TF_VAR_port: ${{ secrets.PORT }}
           TF_VAR_trop: ${{ secrets.TROP }}
+          TF_LOG: DEBUG
+          TF_LOG_PATH: terraform.log
+        run: terraform output
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Terraform Apply
+        env:
+          TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
+          TF_VAR_postgres_pass: ${{ secrets.POSTGRES_PASSWORD }}
+          TF_VAR_ssh_user: ${{ secrets.SSH_USER }}
+          TF_VAR_ssh_host: ${{ secrets.SSH_HOST }}
+          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
+          TF_VAR_port: ${{ secrets.PORT }}
+          TF_VAR_trop: ${{ secrets.TROP }}
+          TF_LOG: DEBUG
+          TF_LOG_PATH: terraform.log
+        run: terraform apply -auto-approve
+
+      - name: Failsafe - show terraform.log
+        if: failure()
+        run: cat terraform.log
+
+      - name: Print Terraform Log
+        run: cat terraform.log
 
       - name: Terraform Validate
         run: terraform validate
