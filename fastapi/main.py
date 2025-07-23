@@ -39,4 +39,3 @@ async def parse_uploaded_file(file: UploadFile = File(...)):
 
     os.remove(temp_path)
     return result
-# fastapi, uvicorn, pdfplumber, python-docx, pytesseract, pillow, python-multipart
