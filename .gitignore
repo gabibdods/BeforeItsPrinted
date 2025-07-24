@@ -1,9 +1,12 @@
 *
 
+!.gitattributes
 !.gitignore
 !README.md
 !*.tf
 !*.lock.hcl
+!License/
+!License/*.md
 
 !backend/
 !backend/*
