@@ -1,35 +1,34 @@
+# https://github.com/gabibdods/NewRepositoryTemplate:
 *
 
 !.gitattributes
 !.gitignore
 !README.md
-!*.tf
-!*.lock.hcl
 !License/
-!License/*.md
+!License/LICENSE.md
+!License/NOTICE.md
 
-!backend/
-!backend/*
 
-!fastapi/
-!fastapi/*.py
-!fastapi/*.pdf
-!fastapi/Dockerfile
-!fastapi/requirements.txt
+# particular repository ignores:
 
-!desktop/
-!desktop/src/
-!desktop/src/*
-!desktop/src/index.ts
-!desktop/package-lock.json
-!desktop/package.json
-!desktop/tsconfig.json
-
-!infrastructure/
+!.terraform.lock.hcl
 !docker-compose.yaml
-!infrastructure/*.tf
-!infrastructure/*.lock.hcl
+!main.tf
+!variables.tf
 
 !.github/
 !.github/workflows/
 !.github/workflows/deploy.yml
+
+!desktop/
+!desktop/package.json
+!desktop/package-lock.json
+!desktop/tsconfig.json
+
+!desktop/src/
+!desktop/src/index.ts
+
+!fastapi/
+!fastapi/Dockerfile
+!fastapi/*.py
+!fastapi/requirements.txt
