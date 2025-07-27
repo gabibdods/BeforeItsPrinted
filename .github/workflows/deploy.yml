@@ -8,7 +8,7 @@ on:
 
 jobs:
     deploy:
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         env:
             TF_VAR_dir: ${{ secrets.DIR }}
             TF_VAR_user: ${{ secrets.USER }}
