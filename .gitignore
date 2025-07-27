@@ -13,8 +13,8 @@
 
 !.terraform.lock.hcl
 !main.tf
-!variables.tf
 !docker-compose.yaml
+!variables.tf
 
 !.github/
 !.github/workflows/
