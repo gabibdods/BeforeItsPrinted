@@ -20,7 +20,7 @@ jobs:
       - name: Terraform Init
         env:
           TF_VAR_dir: ${{ secrets.DIR }}
-          TF_VAR_user: ${{ secrets.user }}
+          TF_VAR_user: ${{ secrets.USER }}
           TF_LOG: DEBUG
           TF_LOG_PATH: terraform.log
         run: terraform init
@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Apply
         env:
           TF_VAR_dir: ${{ secrets.DIR }}
-          TF_VAR_user: ${{ secrets.user }}
+          TF_VAR_user: ${{ secrets.USER }}
           TF_LOG: DEBUG
           TF_LOG_PATH: terraform.log
         run: terraform apply -auto-approve
@@ -39,7 +39,7 @@ jobs:
       - name: Terraform Output
         env:
           TF_VAR_dir: ${{ secrets.DIR }}
-          TF_VAR_user: ${{ secrets.user }}
+          TF_VAR_user: ${{ secrets.USER }}
           TF_LOG: DEBUG
           TF_LOG_PATH: terraform.log
         if: failure()
