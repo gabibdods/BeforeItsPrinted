@@ -16,6 +16,7 @@ jobs:
             TROP:  ${{ secrets.TROP }}
             PSQL_USER: ${{ secrets.PSQL_USER }}
             PSQL_PASS: ${{ secrets.PSQL_PASS }}
+
         steps:
           - name: Checkout repo
             uses: actions/checkout@v3
