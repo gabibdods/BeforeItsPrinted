@@ -12,9 +12,9 @@
 # particular repository ignores:
 
 !.terraform.lock.hcl
-!docker-compose.yaml
 !main.tf
 !variables.tf
+!docker-compose.yaml
 
 !.github/
 !.github/workflows/
