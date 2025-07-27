@@ -8,7 +8,7 @@ resource "null_resource" "deploy_compose" {
   provisioner "local-exec" {
     interpreter = ["/bin/bash", "-xc"]
     command = <<-EOT
-      whoami
+      sudo -u ${var.user} bash -lc "whoami"
     EOT
   }
   triggers = {
