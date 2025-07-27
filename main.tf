@@ -9,8 +9,7 @@ resource "null_resource" "deploy_compose" {
     interpreter = ["/bin/bash", "-xc"]
     command = <<-EOT
       sudo -u ${var.user} bash -lc 'cd "${var.dir}"'
-      sudo -u ${var.user} bash -lc 'docker compose down'
-      sudo -u ${var.user} bash -lc 'docker compose up -d --build'
+      sudo -E -u ${var.user} bash -lc 'docker compose up -d --build --force-recreate'
     EOT
   }
   triggers = {
