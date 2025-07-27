@@ -12,8 +12,10 @@ jobs:
         env:
             TF_VAR_dir: ${{ secrets.DIR }}
             TF_VAR_user: ${{ secrets.USER }}
-            TF_LOG: DEBUG
-            TF_LOG_PATH: terraform.log
+            PORT:  ${{ secrets.PORT }}
+            TROP:  ${{ secrets.TROP }}
+            PSQL_USER: ${{ secrets.PSQL_USER }}
+            PSQL_PASS: ${{ secrets.PSQL_PASS }}
         steps:
           - name: Checkout repo
             uses: actions/checkout@v3
