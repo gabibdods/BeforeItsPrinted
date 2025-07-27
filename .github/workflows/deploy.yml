@@ -19,24 +19,30 @@ jobs:
 
       - name: Terraform Init
         env:
-          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
+          TF_VAR_dir: ${{ secrets.DIR }}
+          TF_VAR_user: ${{ secrets.user }}
           TF_LOG: DEBUG
           TF_LOG_PATH: terraform.log
         run: terraform init
 
       - name: Terraform Apply
         env:
-          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
+          TF_VAR_dir: ${{ secrets.DIR }}
+          TF_VAR_user: ${{ secrets.user }}
           TF_LOG: DEBUG
           TF_LOG_PATH: terraform.log
         run: terraform apply -auto-approve
 
+      - name: Terraform Validate
+        run: terraform validate
+
       - name: Terraform Output
-        if: failure()
         env:
-          TF_VAR_app_dir: ${{ secrets.APP_DIR }}
+          TF_VAR_dir: ${{ secrets.DIR }}
+          TF_VAR_user: ${{ secrets.user }}
           TF_LOG: DEBUG
           TF_LOG_PATH: terraform.log
+        if: failure()
         run: terraform output
 
       - name: Failsafe - show terraform.log
@@ -46,6 +52,3 @@ jobs:
       - name: Print Terraform Log
         if: failure()
         run: cat terraform.log
-
-      - name: Terraform Validate
-        run: terraform validate

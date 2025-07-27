@@ -5,10 +5,10 @@ resource "null_resource" "deploy_compose" {
     provisioner "local-exec" {
         interpreter = ["/bin/bash", "-c"]
         command = <<-EOT
-            cd "${var.app_dir}";
-            docker compose down;
-            docker compose up -d --build;
-            docker ps;
+            sudo -u ${var.user} cd "${var.dir}";
+            sudo -u ${var.user} docker compose down;
+            sudo -u ${var.user} docker compose up -d --build;
+            sudo -u ${var.user} docker ps;
         EOT
     }
     triggers = {
