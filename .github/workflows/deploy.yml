@@ -30,13 +30,6 @@ jobs:
           TF_LOG_PATH: terraform.log
         run: terraform init
 
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
       - name: Terraform Apply
         env:
           TF_VAR_postgres_user: ${{ secrets.POSTGRES_USER }}
