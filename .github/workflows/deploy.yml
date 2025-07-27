@@ -3,7 +3,7 @@ name: beforeitsprinted
 on:
     push:
         tags:
-        - BIP
+          - BIP
         branches: [main]
 
 jobs:
@@ -24,19 +24,18 @@ jobs:
           - name: Terraform Init
             run: terraform init
 
-          - name: Terraform Apply
-            run: terraform apply -auto-approve
-
           - name: Terraform Validate
             run: terraform validate
+
+          - name: Terraform Plan
+            run: terraform plan
+
+          - name: Terraform Apply
+            run: terraform apply -auto-approve
 
           - name: Terraform Output
             if: failure()
             run: terraform output
-
-          - name: Failsafe - show terraform.log
-            if: failure()
-            run: cat terraform.log
 
           - name: Print Terraform Log
             if: failure()
