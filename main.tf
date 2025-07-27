@@ -1,11 +1,14 @@
-terraform {
-  backend "local" {}
+variable "dir" {
+	type = string
+}
+variable "user" {
+	type = string
 }
 resource "null_resource" "deploy_compose" {
     provisioner "local-exec" {
         interpreter = ["/bin/bash", "-c"]
         command = <<-EOT
-            echo user=>${var.user}<=
+            echo "user=>${var.user}<="
             sudo -u ${var.user} bash -lc '
                 cd "${var.dir}" &&
                 docker compose down &&

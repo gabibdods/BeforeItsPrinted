@@ -1,54 +1,43 @@
 name: beforeitsprinted
 
 on:
-  push:
-    tags:
-    - BIP
-    branches: [main]
+    push:
+        tags:
+        - BIP
+        branches: [main]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set Up Terraform
-        uses: hashicorp/setup-terraform@v2
-
-      - name: Terraform Init
+    deploy:
+        runs-on: ubuntu-latest
         env:
-          TF_VAR_dir: ${{ secrets.DIR }}
-          TF_VAR_user: ${{ secrets.USER }}
-          TF_LOG: DEBUG
-          TF_LOG_PATH: terraform.log
-        run: terraform init
+            TF_VAR_dir: ${{ secrets.DIR }}
+            TF_VAR_user: ${{ secrets.USER }}
+            TF_LOG: DEBUG
+            TF_LOG_PATH: terraform.log
+        steps:
+          - name: Checkout repo
+            uses: actions/checkout@v3
 
-      - name: Terraform Apply
-        env:
-          TF_VAR_dir: ${{ secrets.DIR }}
-          TF_VAR_user: ${{ secrets.USER }}
-          TF_LOG: DEBUG
-          TF_LOG_PATH: terraform.log
-        run: terraform apply -auto-approve
+          - name: Set Up Terraform
+            uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Validate
-        run: terraform validate
+          - name: Terraform Init
+            run: terraform init
 
-      - name: Terraform Output
-        env:
-          TF_VAR_dir: ${{ secrets.DIR }}
-          TF_VAR_user: ${{ secrets.USER }}
-          TF_LOG: DEBUG
-          TF_LOG_PATH: terraform.log
-        if: failure()
-        run: terraform output
+          - name: Terraform Apply
+            run: terraform apply -auto-approve
 
-      - name: Failsafe - show terraform.log
-        if: failure()
-        run: cat terraform.log
+          - name: Terraform Validate
+            run: terraform validate
 
-      - name: Print Terraform Log
-        if: failure()
-        run: cat terraform.log
+          - name: Terraform Output
+            if: failure()
+            run: terraform output
+
+          - name: Failsafe - show terraform.log
+            if: failure()
+            run: cat terraform.log
+
+          - name: Print Terraform Log
+            if: failure()
+            run: cat terraform.log
