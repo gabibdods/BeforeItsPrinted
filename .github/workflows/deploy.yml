@@ -2,6 +2,8 @@ name: beforeitsprinted
 
 on:
   push:
+    tags:
+    - BIP
     branches: [main]
 
 jobs:
