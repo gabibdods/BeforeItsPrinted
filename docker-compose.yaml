@@ -7,7 +7,7 @@ services:
         ports:
             - "${PORT}:${TROP}"
         volumes:
-            - ./fastapi:/app
+            - ./fastapi:/app/fastapi:ro
         depends_on:
           - db
     db:
