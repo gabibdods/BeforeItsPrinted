@@ -6,17 +6,15 @@ from word import parse_docx
 from txt import parse_txt
 import os, shutil
 import tempfile
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=".env")
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:9000",
-    "http://127.0.0.1:9000",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=os.getenv("DJANGO_URL"),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
