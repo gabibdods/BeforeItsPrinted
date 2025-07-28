@@ -12,7 +12,6 @@ jobs:
         env:
             TF_VAR_dir: ${{ secrets.DIR }}
             TF_VAR_user: ${{ secrets.USER }}
-            HOST:  ${{ secrets.HOST }}
             PORT:  ${{ secrets.PORT }}
             TROP:  ${{ secrets.TROP }}
             PSQL_USER: ${{ secrets.PSQL_USER }}
