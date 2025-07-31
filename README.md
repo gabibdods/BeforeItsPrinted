@@ -154,11 +154,11 @@ root/
 │   └── NOTICE.md
 │
 ├── .gitattributes
-│   │
+│
 ├── .gitignore
-│   │
+│
 ├── README.md
-│   │
+│
 ├── .github/
 │   └── workflows
 │       └── deploy.yml
