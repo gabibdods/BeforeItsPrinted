@@ -24,6 +24,10 @@
 !.github/workflows/
 !.github/workflows/deploy.yml
 
+!bip/
+!bip/test.pdf
+!bip/results.txt
+
 !desktop/
 !desktop/package.json
 !desktop/package-lock.json

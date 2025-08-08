@@ -1,0 +1,49 @@
+[ { "id": "Q1", "text": "What is the capital of Japan?\n(cid:127) A) Beijing\n(cid:127) B) Tokyo\n(cid:127) C) Seoul\n(cid:127) D) Bangkok", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q2", "text": "Which gas do plants absorb from the atmosphere?\n(cid:127) A) Oxygen\n(cid:127) B) Nitrogen\n(cid:127) C) Carbon Dioxide\n(cid:127) D) Helium", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q3", "text": "What is 5 + 7?\n(cid:127) A) 10\n(cid:127) B) 11\n(cid:127) C) 12\n(cid:127) D) 13", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q4", "text": "Which planet is known as the Red Planet?\n(cid:127) A) Venus\n(cid:127) B) Mars\n(cid:127) C) Jupiter\n(cid:127) D) Saturn", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q5", "text": "Who wrote 'Romeo and Juliet'?\n(cid:127) A) Charles Dickens\n(cid:127) B) William Shakespeare\n(cid:127) C) Mark Twain\n(cid:127) D) Jane Austen\nSection 2: True/False", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q6", "text": "The Sun is a star.\n(cid:127) A) True\n(cid:127) B) False", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q7", "text": "The chemical symbol for gold is Ag.\n(cid:127) A) True\n(cid:127) B) False", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q8", "text": "Water boils at 100°C at sea level.\n(cid:127) A) True\n(cid:127) B) False", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q9", "text": "The Great Wall of China is visible from space with the naked eye.\n(cid:127) A) True\n(cid:127) B) False\nSection 3: Short Answer", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q10", "text": "Name the three primary colors.", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q11", "text": "What is the freezing point of water in Celsius?", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q12", "text": "Who is the current President or Prime Minister of your country?", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q13", "text": "Name one famous landmark in Italy.", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q14", "text": "What is the square root of 64?\nSection 4: Fill-in-the-Blank", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q15", "text": "The chemical formula for table salt is ________.", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q16", "text": "The tallest mountain in the world is ________.", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q17", "text": "The currency used in Japan is the ________.", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q18", "text": "The process by which plants make their food is called ________.", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q19", "text": "The largest mammal on Earth is the ________.\nSection 5: Matching", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q20", "text": "Match the country with its continent:\n(cid:127) A) Brazil - 1) South America\n(cid:127) B) Canada - 2) Europe\n(cid:127) C) Egypt - 3) North America\n(cid:127) D) Japan - 4) Africa\n(cid:127) E) Germany - 5) Asia\nSection 6: Ordering", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q21", "text": "Arrange the following numbers from smallest to largest: 42, 7, 19, 84, 3\nSection 7: Essay", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q22", "text": "Describe a memorable day from your life and explain why it was important.", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q23", "text": "What are some advantages and disadvantages of using technology in education?", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q24", "text": "Imagine you are an astronaut on Mars-write about your first day.", "type": "open_answer", "options": null, "answer": null, "subquestions": null },
+
+{ "id": "Q25", "text": "Explain the importance of healthy eating habits.", "type": "open_answer", "options": null, "answer": null, "subquestions": null } ]
