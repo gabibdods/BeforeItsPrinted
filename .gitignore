@@ -36,10 +36,10 @@
 !desktop/src/
 !desktop/src/index.ts
 
-!fastapi/
-!fastapi/Dockerfile
-!fastapi/*.py
-!fastapi/requirements.txt
+!parser/
+!parser/Dockerfile
+!parser/*.py
+!parser/requirements.txt
 
 !proxy/
 !proxy/app.js

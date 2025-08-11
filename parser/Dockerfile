@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD sh -c "uvicorn --host 0.0.0.0 --port $PORT --reload main:app"
+CMD sh -c "uvicorn --host 0.0.0.0 --port 8001 --reload main:app"
