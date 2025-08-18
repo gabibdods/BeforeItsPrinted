@@ -1,4 +1,3 @@
-# Before Its Printed
 fastapi                     # (fastapi, starlette, pydantic, typing-extensions, annotated-types, pydantic_core, typing-inspection, anyio, idna, sniffio)
 uvicorn                     # (uvicorn, click, h11)
 pdfplumber                  # (pdfplumber, pdfminer.six, pillow, pypdfium, charset-normalizer, cryptography, cffi, pycparser)

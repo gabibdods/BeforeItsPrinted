@@ -1,0 +1,7 @@
+torch                   # pip install --index-url https://download.pytorch.org/whl/cu121 torch torchvision
+torchvision             # pip install --index-url https://download.pytorch.org/whl/cu121 torch torchvision
+datasets
+transformers
+peft
+jsonschema
+hf_xet

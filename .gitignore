@@ -17,16 +17,12 @@
 # particular repository ignores:
 
 !.terraform.lock.hcl
-!main.tf
 !docker-compose.yaml
+!main.tf
 
 !.github/
 !.github/workflows/
 !.github/workflows/deploy.yml
-
-!bip/
-!bip/test.pdf
-!bip/results.txt
 
 !desktop/
 !desktop/package.json
@@ -36,6 +32,10 @@
 !desktop/src/
 !desktop/src/index.ts
 
+!nlp/
+!nlp/init.ipynb
+!nlp/requirements.txt
+
 !parser/
 !parser/Dockerfile
 !parser/*.py
@@ -43,6 +43,7 @@
 
 !proxy/
 !proxy/app.js
+!proxy/Dockerfile
 !proxy/package.json
 !proxy/package-lock.json
 
@@ -50,7 +51,6 @@
 !proxy/bin/www
 
 !proxy/public/
-!proxy/public/index.js
 
 !proxy/public/stylesheets/
 !proxy/public/stylesheets/style.css
