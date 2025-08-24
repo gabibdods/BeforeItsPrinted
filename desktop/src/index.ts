@@ -1,87 +1,67 @@
-import {app, BrowserWindow, session, net} from 'electron';
-import axios from 'axios';
-import dotenv from 'dotenv';
+import { app, BrowserWindow, session, net } from "electron";
+import axios, { AxiosInstance } from "axios";
+import dotenv from "dotenv";
+import https from "https";
+import fs from "fs";
+import path from "path";
 
 dotenv.config();
-
-const djangoURL = process.env.DJANGO_URL;
-const fastAPIURL = process.env.FASTAPI_URL;
-const proxyURL = process.env.PROXY_URL;
+const proxyBASE = process.env.PROXY_BASE;
 const loginUser = process.env.LOGIN_USER;
 const loginPass = process.env.LOGIN_PASS;
+const djangoURL = process.env.DJANGO_URL;
 const electronBypass = process.env.ELECTRON_BYPASS;
 
-let jwtToken: string;
+const resPath = app.isPackaged ? process.resourcesPath : path.join(__dirname, "..");
+const cerPath = path.join(resPath, "cer.pem");
+const keyPath = path.join(resPath, "key.pem");
+const httpsAgent = new https.Agent({
+  cert: fs.readFileSync(cerPath),
+  key: fs.readFileSync(keyPath),
+});
 
-async function loginProxy() {
-    const resp = await axios.post(`${proxyURL}/auth/login`, {
-        username: loginUser, password: loginPass
-    });
-    jwtToken = resp.data.token
-    axios.defaults.baseURL = proxyURL;
-    axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
-}
-function attachAuthHeader() {
-    const filter = {
-        urls: [
-            `${fastAPIURL}/*`,
-            `${djangoURL}/*`,
-        ],
-    };
-    session.defaultSession.webRequest.onBeforeSendHeaders(filter, (details, callback) => {
-        if (jwtToken) {
-            details.requestHeaders['Authorization'] = `Bearer ${jwtToken}`;
-        }
-        details.requestHeaders['ElectronBypass'] = `${electronBypass}`;
-        callback({ requestHeaders: details.requestHeaders });
-    });
-}
-function loginDjango(): Promise<void> {
-    return new Promise((resolve, reject) => {
-        const req = net.request({
-            method: 'GET',
-            url: `${djangoURL}/bip/`,
-            session: session.defaultSession,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        req.on('response', (response) => {
-            if (response.statusCode === 201) {
-                resolve();
-            } else {
-                reject(new Error(`Django Login Failed: ${response.statusCode} ${response.statusMessage}`));
-            }
-        });
-        req.on('error', reject);
-
-        req.write(JSON.stringify({ username: loginUser, password: loginPass }));
-        req.end();
-    });
-}
-async function createWindow() {
-    const win = new BrowserWindow({
-        fullscreen: true,
-        webPreferences: {
-            nodeIntegration: false,
-            contextIsolation: true,
-            sandbox: true,
-            javascript: true,
-            zoomFactor: 1.0,
-        }
-    });
-    await win.loadURL(`${djangoURL}/bip/`);
-    //win.webContents.openDevTools({ mode: 'detach' });
-}
 app.whenReady().then(async () => {
-    try {
-        await loginProxy();
-        attachAuthHeader();
-        await loginDjango();
-        await createWindow();
+  let outgo: AxiosInstance;
+  try {
+    outgo = axios.create({
+      baseURL: proxyBASE,
+      httpsAgent,
+      timeout: 100000,
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const resp = await outgo.post('/login/', {
+      username: loginUser,
+      password: loginPass
+    });
+    const jwtToken = String(resp.data.token);
+
+    const win = new BrowserWindow({
+      fullscreen: true,
+      webPreferences: {
+        devTools: false,
+        nodeIntegration: false,
+        contextIsolation: true,
+        sandbox: true,
+        javascript: true,
+        zoomFactor: 1.0,
+      }
+    });
+    session.defaultSession.clearCache();
+    session.defaultSession.webRequest.onBeforeSendHeaders(
+      { urls: [`${djangoURL}`] },
+      (details, callback) => {
+        const headers = { ...details.requestHeaders };
+        headers['Authorization'] = `Bearer ${jwtToken}`;
+        headers['ElectronBypass'] = `${electronBypass}`;
+        headers['Pragma'] = 'no-cache';
+        headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
+        callback({ requestHeaders: headers });
+      }
+    );
+    await win.loadURL(`${djangoURL}`);
     } catch (err) {
-        console.error(err);
-        app.quit();
+      console.log(err);
+      app.quit();
     }
 });
 app.on("window-all-closed", () => {

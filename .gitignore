@@ -1,4 +1,4 @@
-# https://github.com/gabibdods/NewRepositoryTemplate:
+# https://github.com/gabibdods/NewRepo:
 *
 
 !.gitattributes
@@ -16,9 +16,9 @@
 
 # particular repository ignores:
 
-!.terraform.lock.hcl
 !docker-compose.yaml
 !main.tf
+!.terraform.lock.hcl
 
 !.github/
 !.github/workflows/
@@ -35,6 +35,10 @@
 !nlp/
 !nlp/init.ipynb
 !nlp/requirements.txt
+
+!nlp/training_data/
+!nlp/training_data/*.json
+!nlp/training_data/*.jsonl
 
 !parser/
 !parser/Dockerfile

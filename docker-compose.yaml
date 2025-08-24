@@ -1,49 +1,33 @@
 services:
-    db:
-        image: postgres:16
-        container_name: bipDB
-        env_file:
-          - .env
-        expose:
-          - "5432"
-        volumes:
-          - postgres_data:/var/lib/postgresql/data
-        restart: always
-        networks:
-            gabibdods:
-                aliases:
-                  - bipDB
+  bipdb:
+    image: postgres:16
+    container_name: bipdb
+    env_file: [.env]
+    expose: [5432]
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    restart: unless-stopped
+    networks: [gabibdods]
 
-    fastapi:
-        build:
-            context: ./parser
-        container_name: bipFA
-        expose:
-          - "8001"
-        volumes:
-          - ./parser:/app/parser:ro
-        depends_on: [db]
-        restart: always
-        networks:
-            gabibdods:
-                aliases:
-                  - bipFA
+  bipfa:
+    build: ./parser
+    container_name: bipfa
+    ports: [9000:9000]
+    depends_on: [bipdb]
+    restart: unless-stopped
+    networks: [gabibdods]
 
-    proxy:
-        build: ./proxy
-        container_name: bipPX
-        expose:
-          - "3000"
-        depends_on: [fastapi]
-        restart: always
-        networks:
-            gabibdods:
-                aliases:
-                  - bipPX
+  bippx:
+    build: ./proxy
+    container_name: bippx
+    env_file: [.env]
+    ports: [3000:3000]
+    depends_on: [bipfa]
+    restart: unless-stopped
+    networks: [gabibdods]
 
 volumes:
-    postgres_data:
+  postgres_data:
 
 networks:
-    gabibdods:
-        external: true
+  gabibdods:
+    external: true
