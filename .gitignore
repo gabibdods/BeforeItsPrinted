@@ -33,12 +33,11 @@
 !desktop/src/index.ts
 
 !nlp/
-!nlp/init.ipynb
+!nlp/init_phi3.ipynb
+!nlp/init_t5small.ipynb
+!nlp/prod.ipynb
+!nlp/README.md
 !nlp/requirements.txt
-
-!nlp/training_data/
-!nlp/training_data/*.json
-!nlp/training_data/*.jsonl
 
 !parser/
 !parser/Dockerfile

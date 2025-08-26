@@ -1,4 +1,4 @@
-# BIP
+# BeforeItsPrinted
 
 # AI-Powered Practice Exam Generator
 

@@ -1,7 +1,10 @@
-torch                   # pip install --index-url https://download.pytorch.org/whl/cu121 torch torchvision
-torchvision             # pip install --index-url https://download.pytorch.org/whl/cu121 torch torchvision
-datasets
-transformers
-peft
-jsonschema
-hf_xet
+torch                   # pip install --index-url https://download.pytorch.org/whl/cu121 torch torchvision (torch, torchvision, mpmath, typing-extensions, sympy, setuptools, pillow, numpy, networkx, MarkupSafe, fsspec, filelock, jinja2)
+datasets								# (datasets, pytz, xxhash, urllib3, tzdata, six, pyyaml, pyarrow, propcache, packaging, multidict, idna, frozenlist, dill, colorama, charset_normalizer, certifi, attrs, aiohappyeyeballs, yarl, tqdm, requests, python-dateutil, multiprocess, aiosignal, pandas, huggingface-hub, aiohttp)
+transformers						# (transformers, safetensors, regex, tokenizers)
+peft										# (peft, sympy, psutil, accelerate)
+jsonschema							# (jsonschema, rpds-py, referencing, jsonschema-specifications)
+hf_xet									# (hf_xet)
+notebook                # (notebook, webencodings, wcwidth, pywin32, pure-eval, fastjsonschema, websocket-client, webcolors, uri-template, types-python-dateutil, traitlets, tornado, tinycss2, soupsieve, sniffio, send2trash, rfc3986-validator, rfc3339-validator, pyzmq, pywinpty, python-json-logger, pygments, pycparser, prompt_toolkit, prometheus-client, platformdirs, parso, pandocfilters, nest-asyncio, mistune, lark, jupyterlab-pygments, jsonpointer, json5, h11, fqdn, executing, defusedxml, decorator, debugpy, comm, bleach, babel, async-lru, asttokens, terminado, stack_data, rfc3987-syntax, matplotlib-inline, jupyter-core, jedi, ipython-pygments-lexers, httpcore, cffi, beautifulsoup4, arrow, anyio, jupyter-server-terminals, jupyter-client, isoduration, ipython, httpx, argon2-cffi-bindings, nbformat, ipykernel, argon2-cffi, nbclient, jupyter-events, nbconvert, jupyter-server, notebook-shim, jupyterlab-server, jupyter-lsp, jupyterlab)
+bitsandbytes						# (bitsandbytes)
+#pip install jupyter --upgrade
+#pip install ipywidgets widgetsnbextension --upgrade
