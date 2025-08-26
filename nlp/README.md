@@ -1,6 +1,6 @@
 # BeforeItsPrinted — Topics Index
 
-This README lists every topic your AI exam author can cover. It’s designed to be **human-readable** and **easy to parse** from a Jupyter notebook.
+This README lists every available topic trained on. It’s designed to be **human-readable** and **easy to parse** from the Jupyter notebook.
 
 <!-- TOPIC-LIST:BEGIN -->
 
