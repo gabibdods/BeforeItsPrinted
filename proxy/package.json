@@ -14,7 +14,8 @@
     "debug": "~2.6.9",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "morgan": "^1.10.1"
+    "morgan": "^1.10.1",
+    "http-proxy-middleware": "^3.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",

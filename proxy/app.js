@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import logger from 'morgan';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
@@ -34,14 +35,23 @@ app.use(cookieParser());
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('trust-proxy', 1);
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users/', usersRouter);
+
+app.get('/bip/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'main.html'));
+});
+
+app.use('/bip/parse/', createProxyMiddleware({
+  target: 'http://bipfa:9000/parse/',
+  changeOrigin: true,
+  ws: false,
+  pathRewrite: { '^/parse/': '/parse/' }
+}));
 
 app.post('/login/', (req, res) => {
-    console.log(req);
-    const tokenTest = jwt.sign({ sub: "N@*4hmZn?q8}%8e" }, jwtSecret, { expiresIn: '5m' });
-    return res.json({ tokenTest });
-
     const { username, password } = req.body;
     if (username === loginUser && password === loginPass) {
         const token = jwt.sign({ sub: username }, jwtSecret, {
@@ -53,7 +63,6 @@ app.post('/login/', (req, res) => {
 });
 
 app.get('/token/', async (req, res) => {
-    console.log('Authorization header:', req.get('authorization'));
     const auth = req.headers.authorization;
     if (!auth?.startsWith('Bearer ')) return res.sendStatus(401);
     try {

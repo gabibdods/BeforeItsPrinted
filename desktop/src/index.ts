@@ -1,9 +1,9 @@
-import { app, BrowserWindow, session, net } from "electron";
-import axios, { AxiosInstance } from "axios";
-import dotenv from "dotenv";
-import https from "https";
-import fs from "fs";
-import path from "path";
+import { app, BrowserWindow, session, net } from 'electron';
+import axios, { AxiosInstance } from 'axios';
+import dotenv from 'dotenv';
+import https from 'https';
+import fs from 'fs';
+import path from 'path';
 
 dotenv.config();
 const proxyBASE = process.env.PROXY_BASE;
@@ -60,7 +60,6 @@ app.whenReady().then(async () => {
     );
     await win.loadURL(`${djangoURL}`);
     } catch (err) {
-      console.log(err);
       app.quit();
     }
 });

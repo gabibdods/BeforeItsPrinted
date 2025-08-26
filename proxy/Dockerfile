@@ -8,7 +8,7 @@ RUN npm ci --omit=dev
 
 COPY . .
 
-ENV NODE_END=production PROXY_PORT=3000
+ENV NODE_ENV=production
 
 USER node
 

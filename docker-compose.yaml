@@ -6,28 +6,39 @@ services:
     expose: [5432]
     volumes: [postgres_data:/var/lib/postgresql/data]
     restart: unless-stopped
-    networks: [gabibdods]
+#    networks: [gabibdods]
 
   bipfa:
+    stop_grace_period: 1s
     build: ./parser
     container_name: bipfa
-    ports: [9000:9000]
+    ports: [9000]
     depends_on: [bipdb]
     restart: unless-stopped
-    networks: [gabibdods]
+#    networks: [gabibdods]
 
   bippx:
+    stop_grace_period: 1s
     build: ./proxy
     container_name: bippx
     env_file: [.env]
-    ports: [3000:3000]
+    expose: [3000]
     depends_on: [bipfa]
     restart: unless-stopped
-    networks: [gabibdods]
+#    networks: [gabibdods]
+
+  bipcf:
+    image: cloudflare/cloudflared:latest
+    container_name: hgcf
+    env_file: [.env]
+    command: tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
+    depends_on: [bippx]
+    restart: unless-stopped
+#    networks: [gabibdods]
 
 volumes:
   postgres_data:
 
-networks:
-  gabibdods:
-    external: true
+#networks:
+#  gabibdods:
+#    external: true
